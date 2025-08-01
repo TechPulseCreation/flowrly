@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flourly Restaurant | Luxury Fine Dining</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a1a1a',
+                        secondary: '#c19a6b',
+                        accent: '#e8e8e8',
+                        dark: '#0d0d0d',
+                        light: '#f5f5f5',
+                    },
+                    fontFamily: {
+                        sans: ['"Cormorant Garamond"', 'serif'],
+                        body: ['"Montserrat"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(10, 10, 10, 0.45), rgba(10, 10, 10, 0.45)), 
+                        url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .menu-item:hover .menu-item-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .testimonial-slide {
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-light text-dark overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-primary/90 backdrop-blur-sm transition-all duration-300 ease-in-out">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0">
+                        <img src="logo.png" alt="Flourly Restaurant Logo" class="h-12">
+                    </a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#" class="text-accent hover:text-secondary px-3 py-2 text-sm font-medium transition-colors duration-300">Home</a>
+                        <a href="#about" class="text-accent hover:text-secondary px-3 py-2 text-sm font-medium transition-colors duration-300">About</a>
+                        <a href="#menu" class="text-accent hover:text-secondary px-3 py-2 text-sm font-medium transition-colors duration-300">Menu</a>
+                        <a href="#gallery" class="text-accent hover:text-secondary px-3 py-2 text-sm font-medium transition-colors duration-300">Gallery</a>
+                         <a href="#kids" class="text-accent hover:text-secondary px-3 py-2 text-sm font-medium transition-colors duration-300">Kids Area</a>
+                        <a href="#reservation" class="text-accent hover:text-secondary px-3 py-2 text-sm font-medium transition-colors duration-300">Reservations</a>
+                        <a href="#contact" class="text-accent hover:text-secondary px-3 py-2 text-sm font-medium transition-colors duration-300">Contact</a>
+                       
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-accent hover:text-secondary focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" class="block text-accent hover:text-secondary px-3 py-2 text-base font-medium transition-colors duration-300">Home</a>
+                <a href="#about" class="block text-accent hover:text-secondary px-3 py-2 text-base font-medium transition-colors duration-300">About</a>
+                <a href="#menu" class="block text-accent hover:text-secondary px-3 py-2 text-base font-medium transition-colors duration-300">Menu</a>
+                <a href="#gallery" class="block text-accent hover:text-secondary px-3 py-2 text-base font-medium transition-colors duration-300">Gallery</a>
+                <a href="#reservation" class="block text-accent hover:text-secondary px-3 py-2 text-base font-medium transition-colors duration-300">Reservations</a>
+                <a href="#contact" class="block text-accent hover:text-secondary px-3 py-2 text-base font-medium transition-colors duration-300">Contact</a>
+                <a href="#kids" class="block text-accent hover:text-secondary px-3 py-2 text-base font-medium transition-colors duration-300">Kids Area</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section relative h-screen flex items-center justify-center text-center text-accent">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto fade-in">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight mb-6 animate-fadeIn">
+                Culinary Elegance Redefined
+            </h1>
+            <p class="text-xl md:text-2xl font-light mb-8 max-w-2xl mx-auto">
+                An intimate fine dining experience where passion meets perfection in every plate.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#reservation" class="bg-secondary hover:bg-secondary/90 text-primary px-8 py-3 font-medium uppercase tracking-wider transition duration-300 transform hover:scale-105">
+                    Reserve Your Table
+                </a>
+                <a href="#menu" class="border-2 border-accent hover:border-secondary text-accent hover:text-secondary px-8 py-3 font-medium uppercase tracking-wider transition duration-300 transform hover:scale-105">
+                    Explore Our Menu
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-0 right-0 flex justify-center">
+            <a href="#about" class="text-accent hover:text-secondary transition-colors">
+                <i class="fas fa-chevron-down text-2xl animate-bounce"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 lg:py-32 bg-primary text-accent fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                <div class="mb-12 lg:mb-0 order-2 lg:order-1">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-bold mb-6">
+                        The Flourly <span class="text-secondary">Experience</span>
+                    </h2>
+                    <p class="text-lg mb-6 leading-relaxed">
+                        Nestled in the heart of the city, Flourly Restaurant is a celebration of culinary artistry. Our Michelin-starred chef crafts each dish with locally-sourced, seasonal ingredients, presenting a symphony of flavors that both comfort and excite.
+                    </p>
+                    <p class="text-lg mb-8 leading-relaxed">
+                        Our elegant dining room, adorned with curated artworks and ambient lighting, provides the perfect backdrop for an unforgettable dining experience. Whether it's an intimate dinner or a celebratory gathering, every moment at Flourly is designed to delight.
+                    </p>
+                    <div class="flex space-x-4">
+                        <div class="flex-1 border-t border-secondary pt-4">
+                            <h3 class="font-serif text-xl mb-2">Seasonal Menus</h3>
+                            <p class="text-sm">Changing with nature's rhythms to deliver peak freshness</p>
+                        </div>
+                        <div class="flex-1 border-t border-secondary pt-4">
+                            <h3 class="font-serif text-xl mb-2">Sommelier Curated</h3>
+                            <p class="text-sm">Exquisite wine pairings for every course</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 relative">
+                    <div class="aspect-w-3 aspect-h-4 rounded-lg overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Flourly Restaurant Interior" class="w-full h-full object-cover transform transition duration-500 hover:scale-105">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 hidden md:block">
+                        <div class="bg-secondary w-48 h-48 flex items-center justify-center text-primary">
+                            <div class="text-center p-4">
+                                <span class="block font-serif text-5xl">12</span>
+                                <span class="block uppercase tracking-widest text-xs">Years of</span>
+                                <span class="block font-serif text-xl">Culinary Excellence</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Parallax Section -->
+    <section class="parallax h-96 flex items-center justify-center relative" style="background-image: url('https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+        <div class="absolute inset-0 bg-dark/60"></div>
+        <div class="relative z-10 text-center px-4 max-w-3xl mx-auto fade-in">
+            <blockquote class="text-accent">
+                <p class="text-2xl md:text-3xl font-serif italic leading-relaxed mb-4">
+                    "At Flourly, we don't just serve meals—we create memories. Every ingredient tells a story, every plate is a canvas, and every bite is a journey."
+                </p>
+                <footer class="text-lg font-medium text-secondary">— Chef Alexandre Dubois</footer>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 lg:py-32 bg-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4">Our <span class="text-secondary">Menu</span></h2>
+                <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+                    A thoughtfully curated selection of seasonal dishes, where tradition and innovation harmonize on every plate.
+                </p>
+            </div>
+            
+            <div class="mb-12 flex justify-center">
+                <div class="inline-flex rounded-md shadow-sm" role="group">
+                    <button type="button" class="px-6 py-3 text-sm font-medium text-primary bg-secondary rounded-l-lg border border-secondary">
+                        Signature Dishes
+                    </button>
+                    <button type="button" class="px-6 py-3 text-sm font-medium text-dark hover:bg-primary/5 border-t border-b border-dark/20">
+                        Seasonal Tasting Menu
+                    </button>
+                    <button type="button" class="px-6 py-3 text-sm font-medium text-dark hover:bg-primary/5 rounded-r-lg border border-dark/20">
+                        Wine Pairings
+                    </button>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Menu Item 1 -->
+                <div class="menu-item group relative overflow-hidden rounded-lg shadow-lg transition-transform duration-500 hover:shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Dish" class="w-full h-64 object-cover transform transition duration-500 group-hover:scale-110">
+                    <div class="menu-item-overlay absolute inset-0 bg-primary/90 flex flex-col justify-end p-6 opacity-0 transform translate-y-4 transition duration-300">
+                        <h3 class="font-serif text-2xl text-secondary mb-2">Seared Scallops</h3>
+                        <p class="text-accent mb-4">With cauliflower puree, pancetta crisps, and truffle emulsion</p>
+                        <p class="text-sm text-accent/80 mb-4">Fresh dayboat scallops seared to perfection, served atop a velvety cauliflower puree, garnished with crispy pancetta and finished with an aromatic truffle emulsion.</p>
+                        <span class="text-secondary text-xl font-serif">$38</span>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 2 -->
+                <div class="menu-item group relative overflow-hidden rounded-lg shadow-lg transition-transform duration-500 hover:shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Dish" class="w-full h-64 object-cover transform transition duration-500 group-hover:scale-110">
+                    <div class="menu-item-overlay absolute inset-0 bg-primary/90 flex flex-col justify-end p-6 opacity-0 transform translate-y-4 transition duration-300">
+                        <h3 class="font-serif text-2xl text-secondary mb-2">Duck Confit</h3>
+                        <p class="text-accent mb-4">With cherry gastrique, potato galette, and roasted heirloom carrots</p>
+                        <p class="text-sm text-accent/80 mb-4">Traditional duck leg confit with crispy skin, served with a sweet-tart cherry reduction, layered potato galette, and caramelized heirloom carrots.</p>
+                        <span class="text-secondary text-xl font-serif">$42</span>
+                    </div>
+                </div>
+                
+                <!-- Menu Item 3 -->
+                <div class="menu-item group relative overflow-hidden rounded-lg shadow-lg transition-transform duration-500 hover:shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1458&q=80" alt="Dish" class="w-full h-64 object-cover transform transition duration-500 group-hover:scale-110">
+                    <div class="menu-item-overlay absolute inset-0 bg-primary/90 flex flex-col justify-end p-6 opacity-0 transform translate-y-4 transition duration-300">
+                        <h3 class="font-serif text-2xl text-secondary mb-2">Chocolate Soufflé</h3>
+                        <p class="text-accent mb-4">With vanilla bean ice cream and raspberry coulis</p>
+                        <p class="text-sm text-accent/80 mb-4">Our signature chocolate soufflé, baked to order and served warm with house-made vanilla bean ice cream and a vibrant raspberry sauce.</p>
+                        <span class="text-secondary text-xl font-serif">$18</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center fade-in">
+                <a href="#" class="inline-block border-2 border-primary px-8 py-3 font-medium uppercase tracking-wider text-primary hover:bg-primary hover:text-accent transition duration-300">
+                    View Full Menu
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 lg:py-32 bg-primary text-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4">Our <span class="text-secondary">Ambience</span></h2>
+                <p class="text-lg text-accent/80 max-w-2xl mx-auto">
+                    Step into an environment where luxury meets comfort, and every detail is meticulously considered.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="col-span-2 row-span-2">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Restaurant Interior" class="w-full h-full object-cover rounded-lg shadow-lg transform transition duration-500 hover:scale-105">
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1551218808-94e380e7f263?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Bar Area" class="w-full h-full object-cover rounded-lg shadow-lg transform transition duration-500 hover:scale-105">
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1566056909536-24450c22b4cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Private Dining" class="w-full h-full object-cover rounded-lg shadow-lg transform transition duration-500 hover:scale-105">
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Wine Selection" class="w-full h-full object-cover rounded-lg shadow-lg transform transition duration-500 hover:scale-105">
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Chef at Work" class="w-full h-full object-cover rounded-lg shadow-lg transform transition duration-500 hover:scale-105">
+                </div>
+            </div>
+        </div>
+    </section>
+ <!-- Kids Play Area Section -->
+    <section id="kids" class="py-20 lg:py-32 bg-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4 text-primary">Kids <span class="text-secondary">Play Area</span></h2>
+                <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+                    A safe, fun space for your little ones while you enjoy your dining experience.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80" 
+                             alt="Kids Play Area" 
+                             class="w-full h-full object-cover transform transition duration-500 hover:scale-105">
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <h3 class="font-serif text-2xl mb-6 text-primary">Safe & Supervised Fun</h3>
+                    <ul class="space-y-4 text-dark">
+                        <li class="flex items-start">
+                            <i class="fas fa-child text-secondary mt-1 mr-3"></i>
+                            <span>Supervised play area with certified childcare staff</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-secondary mt-1 mr-3"></i>
+                            <span>Open daily from 5PM to 9PM</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-users text-secondary mt-1 mr-3"></i>
+                            <span>For children ages 3-10 years old</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-gamepad text-secondary mt-1 mr-3"></i>
+                            <span>Educational toys, games, and activities</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-utensils text-secondary mt-1 mr-3"></i>
+                            <span>Special kids menu available upon request</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8 bg-primary/5 p-6 rounded-lg">
+                        <h4 class="font-serif text-xl mb-3 text-primary">Safety First</h4>
+                        <p class="text-sm text-dark/80">
+                            Our play area features soft flooring, rounded edges, and regular sanitation. All staff are background-checked and CPR-certified. Parents must remain on premises while children are in the play area.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Reviews Section -->
+    <section class="py-20 bg-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-4">Guest <span class="text-secondary">Reviews</span></h2>
+                <p class="text-lg text-dark/80 max-w-2xl mx-auto">
+                    From our cherished guests who have experienced the Flourly journey.
+                </p>
+            </div>
+            
+            <div class="relative overflow-hidden">
+                <div id="testimonial-container" class="flex transition-transform duration-500">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-slide min-w-full px-4 md:px-16">
+                        <div class="bg-primary/5 p-8 md:p-12 rounded-lg relative">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+                            <div class="flex items-center mb-6">
+                                <div class="flex -space-x-2 overflow-hidden mr-4">
+                                    <img class="inline-block h-12 w-12 rounded-full ring-2 ring-secondary" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Reviewer">
+                                </div>
+                                <div>
+                                    <h4 class="font-serif text-lg">Emily Richardson</h4>
+                                    <div class="flex text-secondary">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <blockquote class="text-lg italic leading-relaxed">
+                                "Every bite at Flourly was a revelation. The scallop dish transcended expectations - the perfect sear, the truffle emulsion - it was poetry on a plate. The sommelier's wine pairing was spot on, elevating the experience further."
+                            </blockquote>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-slide min-w-full px-4 md:px-16">
+                        <div class="bg-primary/5 p-8 md:p-12 rounded-lg relative">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+                            <div class="flex items-center mb-6">
+                                <div class="flex -space-x-2 overflow-hidden mr-4">
+                                    <img class="inline-block h-12 w-12 rounded-full ring-2 ring-secondary" src="https://randomuser.me/api/portraits/men/54.jpg" alt="Reviewer">
+                                </div>
+                                <div>
+                                    <h4 class="font-serif text-lg">Robert Chang</h4>
+                                    <div class="flex text-secondary">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <blockquote class="text-lg italic leading-relaxed">
+                                "Celebrated our anniversary at Flourly and it exceeded all expectations. The duck confit was sublime - crispy skin giving way to perfectly tender meat. Service was impeccable; the staff anticipated every need without intruding."
+                            </blockquote>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-slide min-w-full px-4 md:px-16">
+                        <div class="bg-primary/5 p-8 md:p-12 rounded-lg relative">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+                            <div class="flex items-center mb-6">
+                                <div class="flex -space-x-2 overflow-hidden mr-4">
+                                    <img class="inline-block h-12 w-12 rounded-full ring-2 ring-secondary" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Reviewer">
+                                </div>
+                                <div>
+                                    <h4 class="font-serif text-lg">Sophia Laurent</h4>
+                                    <div class="flex text-secondary">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <blockquote class="text-lg italic leading-relaxed">
+                                "The tasting menu was an absolute journey. Each course built beautifully on the last, showcasing the chef's creativity while respecting the ingredients. The wine pairing was educational and delicious. Can't wait to return for seasonal updates."
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center mt-8 space-x-4">
+                    <button id="testimonial-prev" class="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition">
+                        <i class="fas fa-chevron-left text-primary"></i>
+                    </button>
+                    <button id="testimonial-next" class="p-2 rounded-full bg-primary/10 hover:bg-primary/20 transition">
+                        <i class="fas fa-chevron-right text-primary"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-20 lg:py-32 bg-primary text-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:flex lg:items-center lg:gap-16">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 fade-in">
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-6">Make a <span class="text-secondary">Reservation</span></h2>
+                    <p class="text-lg mb-8 leading-relaxed">
+                        Experience culinary excellence in our intimate dining room. Reserve your table for an unforgettable evening of gastronomic delight.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-phone-alt text-secondary"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-serif text-xl">By Phone</h4>
+                                <p class="text-accent/80">+1 (555) 123-4567</p>
+                                <p class="text-sm text-accent/60">Daily from 10am to 10pm</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-envelope text-secondary"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-serif text-xl">By Email</h4>
+                                <p class="text-accent/80">reservations@flourlyrestaurant.com</p>
+                                <p class="text-sm text-accent/60">Response within 24 hours</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-info-circle text-secondary"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-serif text-xl">Important Information</h4>
+                                <p class="text-sm text-accent/80">
+                                    For parties of 6 or more, please call directly. We hold reservations for 15 minutes past the booked time.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 fade-in">
+                    <form class="bg-light text-dark p-8 rounded-lg shadow-2xl">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium mb-1">Full Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-dark/20 rounded focus:outline-none focus:ring-1 focus:ring-secondary">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium mb-1">Email Address</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-dark/20 rounded focus:outline-none focus:ring-1 focus:ring-secondary">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium mb-1">Phone Number</label>
+                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-dark/20 rounded focus:outline-none focus:ring-1 focus:ring-secondary">
+                            </div>
+                            <div>
+                                <label for="guests" class="block text-sm font-medium mb-1">Number of Guests</label>
+                                <select id="guests" class="w-full px-4 py-2 border border-dark/20 rounded focus:outline-none focus:ring-1 focus:ring-secondary">
+                                    <option>1 person</option>
+                                    <option>2 people</option>
+                                    <option>3 people</option>
+                                    <option>4 people</option>
+                                    <option>5 people</option>
+                                    <option>6+ people (please call)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="date" class="block text-sm font-medium mb-1">Date</label>
+                                <input type="date" id="date" class="w-full px-4 py-2 border border-dark/20 rounded focus:outline-none focus:ring-1 focus:ring-secondary">
+                            </div>
+                            <div>
+                                <label for="time" class="block text-sm font-medium mb-1">Time</label>
+                                <select id="time" class="w-full px-4 py-2 border border-dark/20 rounded focus:outline-none focus:ring-1 focus:ring-secondary">
+                                    <option>5:00 PM</option>
+                                    <option>5:30 PM</option>
+                                    <option>6:00 PM</option>
+                                    <option>6:30 PM</option>
+                                    <option>7:00 PM</option>
+                                    <option>7:30 PM</option>
+                                    <option>8:00 PM</option>
+                                    <option>8:30 PM</option>
+                                    <option>9:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <label for="notes" class="block text-sm font-medium mb-1">Special Requests</label>
+                            <textarea id="notes" rows="3" class="w-full px-4 py-2 border border-dark/20 rounded focus:outline-none focus:ring-1 focus:ring-secondary"></textarea>
+                        </div>
+                        <div class="mt-8">
+                            <button type="submit" class="w-full bg-secondary hover:bg-secondary/90 text-primary px-6 py-3 font-medium uppercase tracking-wider transition duration-300 transform hover:scale-105">
+                                Reserve Now
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 lg:py-32 bg-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:flex lg:items-center lg:gap-16">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 fade-in">
+                    <h2 class="text-4xl lg:text-5xl font-serif font-bold mb-6 text-primary">Contact <span class="text-secondary">Us</span></h2>
+                    <p class="text-lg mb-8 leading-relaxed text-dark/80">
+                        We'd love to hear from you. Whether you have a question about our menu, want to host a private event, or just want to say hello, our team is here to assist you.
+                    </p>
+                    
+                    <div class="bg-primary/5 p-8 rounded-lg">
+                        <div class="flex items-start mb-6">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-map-marker-alt text-secondary"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-serif text-xl text-primary">Our Location</h4>
+                                <p class="text-dark">123 Culinary Avenue<br>New York, NY 10001</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-6">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-clock text-secondary"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-serif text-xl text-primary">Hours</h4>
+                                <p class="text-dark">
+                                    <span class="font-medium">Dinner:</span> Tuesday - Saturday, 5:00PM - 10:00PM<br>
+                                    <span class="font-medium">Sunday Brunch:</span> 10:00AM - 2:00PM<br>
+                                    <span class="font-medium">Closed:</span> Mondays
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-concierge-bell text-secondary"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="font-serif text-xl text-primary">Private Events</h4>
+                                <p class="text-dark">
+                                    Host your next special occasion in our private dining room. Contact our events team at <span class="font-medium">events@flourlyrestaurant.com</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 fade-in">
+                    <div class="bg-primary text-accent p-8 rounded-lg shadow-xl h-full">
+                        <h3 class="font-serif text-2xl mb-6">Send Us a Message</h3>
+                        <form>
+                            <div class="mb-6">
+                                <label for="contact-name" class="block text-sm font-medium mb-1">Full Name</label>
+                                <input type="text" id="contact-name" class="w-full px-4 py-2 bg-primary/20 border border-accent/30 rounded focus:outline-none focus:ring-1 focus:ring-secondary">
+                            </div>
+                            <div class="mb-6">
+                                <label for="contact-email" class="block text-sm font-medium mb-1">Email Address</label>
+                                <input type="email" id="contact-email" class="w-full px-4 py-2 bg-primary/20 border border-accent/30 rounded focus:outline-none focus:ring-1 focus:ring-secondary">
+                            </div>
+                            <div class="mb-6">
+                                <label for="contact-subject" class="block text-sm font-medium mb-1">Subject</label>
+                                <input type="text" id="contact-subject" class="w-full px-4 py-2 bg-primary/20 border border-accent/30 rounded focus:outline-none focus:ring-1 focus:ring-secondary">
+                            </div>
+                            <div class="mb-6">
+                                <label for="contact-message" class="block text-sm font-medium mb-1">Message</label>
+                                <textarea id="contact-message" rows="4" class="w-full px-4 py-2 bg-primary/20 border border-accent/30 rounded focus:outline-none focus:ring-1 focus:ring-secondary"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-secondary hover:bg-secondary/90 text-primary px-6 py-3 font-medium uppercase tracking-wider transition duration-300 transform hover:scale-105">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div class="h-96 w-full overflow-hidden">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215151319259!2d-73.98773292418396!3d40.74786417138898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1690312867199!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-accent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div class="md:col-span-1">
+                    <a href="#" class="flex-shrink-0 inline-block mb-6">
+                        <img src="https://flourlyrestaurant.com/wp-content/uploads/2023/01/mobile-logo.png" alt="Flourly Restaurant Logo" class="h-16">
+                    </a>
+                    <p class="text-sm text-accent/80 mb-6">
+                        Culinary excellence meets unparalleled hospitality in the heart of New York City.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-accent/80 hover:text-secondary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-accent/80 hover:text-secondary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-accent/80 hover:text-secondary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-accent/80 hover:text-secondary transition-colors">
+                            <i class="fab fa-yelp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-serif text-lg mb-4">Navigation</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm text-accent/80 hover:text-secondary transition-colors">Home</a></li>
+                        <li><a href="#about" class="text-sm text-accent/80 hover:text-secondary transition-colors">About Us</a></li>
+                        <li><a href="#menu" class="text-sm text-accent/80 hover:text-secondary transition-colors">Our Menu</a></li>
+                        <li><a href="#gallery" class="text-sm text-accent/80 hover:text-secondary transition-colors">Gallery</a></li>
+                        <li><a href="#reservation" class="text-sm text-accent/80 hover:text-secondary transition-colors">Reservations</a></li>
+                        <li><a href="#contact" class="text-sm text-accent/80 hover:text-secondary transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-serif text-lg mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-secondary mt-1 mr-3 text-sm"></i>
+                            <span class="text-sm text-accent/80">123 Culinary Avenue<br>New York, NY 10001</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt text-secondary mt-1 mr-3 text-sm"></i>
+                            <span class="text-sm text-accent/80">+1 (555) 123-4567</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-secondary mt-1 mr-3 text-sm"></i>
+                            <span class="text-sm text-accent/80">info@flourlyrestaurant.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-serif text-lg mb-4">Newsletter</h4>
+                    <p class="text-sm text-accent/80 mb-4">
+                        Subscribe to receive updates on seasonal menus, special events, and exclusive offers.
+                    </p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 w-full text-sm bg-dark border border-accent/30 focus:outline-none focus:ring-1 focus:ring-secondary">
+                        <button type="submit" class="bg-secondary text-primary px-4 py-2 text-sm font-medium">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-accent/10 mt-12 pt-8 text-center">
+                <p class="text-xs text-accent/60">
+                    &copy; 2023 Flourly Restaurant. All rights reserved. | Designed with passion for culinary excellence.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Testimonial slider
+        const testimonialContainer = document.getElementById('testimonial-container');
+        const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+        const testimonialPrev = document.getElementById('testimonial-prev');
+        const testimonialNext = document.getElementById('testimonial-next');
+        
+        let currentTestimonial = 0;
+        
+        function updateTestimonial() {
+            testimonialContainer.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+        }
+        
+        testimonialNext.addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial + 1) % testimonialSlides.length;
+            updateTestimonial();
+        });
+        
+        testimonialPrev.addEventListener('click', () => {
+            currentTestimonial = (currentTestimonial - 1 + testimonialSlides.length) % testimonialSlides.length;
+            updateTestimonial();
+        });
+        
+        // Auto slide testimonials
+        setInterval(() => {
+            currentTestimonial = (currentTestimonial + 1) % testimonialSlides.length;
+            updateTestimonial();
+        }, 8000);
+        
+        // Scroll reveal animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        function checkFade() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkFade);
+        window.addEventListener('load', checkFade);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
